@@ -13,22 +13,27 @@ import com.submission.moviecatalogsubmission2made.model.Movie;
 
 public class Detail extends AppCompatActivity {
 
+    String name, date, category, description, photo;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
 
         Movie movie = getIntent().getParcelableExtra(EXTRA_MOVIE);
-        String name = movie.getName();
-        String date = movie.getDate();
-        String category = movie.getCategory();
-        String description = movie.getDescription();
-        String photo = movie.getPhoto();
+        if (movie != null) {
+            name = movie.getName();
+            date = movie.getDate();
+            category = movie.getCategory();
+            description = movie.getDescription();
+            photo = movie.getPhoto();
+        }
 
         ActionBar actionBar = getSupportActionBar();
-        actionBar.setHomeButtonEnabled(true);
-        actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setTitle(name);
+        if (actionBar != null) {
+            actionBar.setHomeButtonEnabled(true);
+            actionBar.setDisplayHomeAsUpEnabled(true);
+            actionBar.setTitle(name);
+        }
 
         TextView tvname = findViewById(R.id.item_name);
         TextView tvdate = findViewById(R.id.item_date);
